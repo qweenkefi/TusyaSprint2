@@ -1,19 +1,20 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 class ScreenGame implements Screen {
     private MyGdxGame myGdxGame;
-    private Texture birdTexture;
-    int birdX = 0, birdY = 0; int birdSpeed = 5;
+
+    Bird bird;
 
 
     public  ScreenGame(MyGdxGame myGdxGame){
 
         this.myGdxGame = myGdxGame;
-        birdTexture = new Texture("bird0.png");
+        bird = new Bird(0,0,new Texture("birdTiles/bird0.png"),5);
     }
     @Override
     public void show() {
@@ -22,14 +23,16 @@ class ScreenGame implements Screen {
 
     @Override
     public void render(float v) {
-        birdX += birdSpeed;
-        birdY += birdSpeed;
 
+        if (Gdx.input.justTouched()) {
+            bird.onClick();
+        }
+        bird.fly();
         ScreenUtils.clear(1, 0, 0, 1);
         myGdxGame.camera.update();
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         myGdxGame.batch.begin();
-        myGdxGame.batch.draw(birdTexture, birdX, birdY);
+        bird.draw(myGdxGame.batch);
         myGdxGame.batch.end();
     }
 
