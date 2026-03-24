@@ -3,6 +3,8 @@ package com.mygdx.game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
+import static com.mygdx.game.MyGdxGame.SRC_HEIGHT;
+
 public class Bird {
     int x, y;
     int width, height;
@@ -42,6 +44,11 @@ public class Bird {
             y -= speed;
         }
 
+    }
+    boolean isInField(){
+        if (y + height <0) return false;
+        if (y > SRC_HEIGHT) return false;
+        return true;
     }
     public void draw(Batch batch){
         int frameMultiplier = 10;

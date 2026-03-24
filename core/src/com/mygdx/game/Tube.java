@@ -11,6 +11,7 @@ import java.util.Random;
 import static com.badlogic.gdx.math.MathUtils.random;
 
 public class Tube {
+    boolean isPointReceived;
 
     Texture textureUpperTube;
     Texture textureDownTube;
@@ -30,6 +31,7 @@ public class Tube {
         gapY = gapHeight / 2 + padding + random.nextInt(SRC_HEIGHT - 2 * (padding + gapHeight / 2));
         distanceBetweenTubes = (SRC_WIDTH + width) / (tubeCount - 1);
         x = distanceBetweenTubes * tubeIdx + SRC_WIDTH;
+        isPointReceived = false;
     }
      void draw(Batch batch){
         batch.draw(textureUpperTube, x, gapY + gapHeight / 2, width, height);
@@ -38,10 +40,20 @@ public class Tube {
     void move(){
         x -= speed;
         if (x < -width){
+            isPointReceived = false;
             x = SRC_WIDTH + distanceBetweenTubes;
             gapY = gapHeight / 2 + padding + random.nextInt(SRC_HEIGHT - 2 * (gapHeight / 2));
         }
 
+
+    }
+    public boolean needAddPoint(Bird bird){
+
+
+        return !isPointReceived && (bird.x >=( x + width));
+    }
+    public void setPointReceived(){
+        isPointReceived = true;
     }
     public boolean isHit(Bird bird){
         if (bird.y <= gapY - gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x)
