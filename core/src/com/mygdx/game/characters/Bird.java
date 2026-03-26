@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -45,7 +45,7 @@ public class Bird {
         }
 
     }
-    boolean isInField(){
+    public boolean isInField(){
         if (y + height <0) return false;
         if (y > SRC_HEIGHT) return false;
         return true;
@@ -60,7 +60,7 @@ public class Bird {
             texture.dispose();
         }
     }
-    void onClick(){
+    public void onClick(){
         jump = true;
         jumpHeight = maxHeightOfJump + y;
     }

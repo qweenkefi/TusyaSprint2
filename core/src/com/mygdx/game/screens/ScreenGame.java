@@ -1,18 +1,25 @@
-package com.mygdx.game;
+package com.mygdx.game.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.MyGdxGame;
+import com.mygdx.game.characters.Bird;
+import com.mygdx.game.characters.Tube;
+import com.mygdx.game.components.MovingBackground;
+import com.mygdx.game.components.PointCounter;
 
 import static com.mygdx.game.MyGdxGame.SRC_HEIGHT;
 import static com.mygdx.game.MyGdxGame.SRC_WIDTH;
 
-class ScreenGame implements Screen {
+public class ScreenGame implements Screen {
     int gamePoints;
     private MyGdxGame myGdxGame;
 
     Bird bird;
+
+    MovingBackground background;
     PointCounter pointCounter;
 
     final int pointCounterMarginTop = 60;
@@ -29,6 +36,7 @@ class ScreenGame implements Screen {
 
         this.myGdxGame = myGdxGame;
         bird = new Bird(0, 0, new Texture("birdTiles/bird0.png"), 5);
+        background = new MovingBackground();
         initTubes();
         pointCounter = new PointCounter(SRC_WIDTH - pointCounterMarginRight, SRC_HEIGHT - pointCounterMarginTop);
     }
@@ -44,13 +52,17 @@ class ScreenGame implements Screen {
     @Override
     public void render(float v) {
 
+
         if (Gdx.input.justTouched()) {
             bird.onClick();
         }
+        background.move();
         bird.fly();
-        if (!bird.isInField())
+        if (!bird.isInField()) {
             System.out.println("not in field");
             isGameOver = true;
+        }
+
 
         for (Tube tube : tubes) {
             tube.move();
@@ -71,6 +83,7 @@ class ScreenGame implements Screen {
         myGdxGame.camera.update();
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         myGdxGame.batch.begin();
+        background.draw(myGdxGame.batch);
         bird.draw(myGdxGame.batch);
         for (Tube tube : tubes) tube.draw(myGdxGame.batch);
         pointCounter.draw(myGdxGame.batch, gamePoints);
@@ -101,6 +114,7 @@ class ScreenGame implements Screen {
     @Override
     public void dispose() {
         bird.dispose();
+        background.dispose();
         for (int i = 0; i < tubes.length; i++) {
             tubes[i].dispose();
         }
