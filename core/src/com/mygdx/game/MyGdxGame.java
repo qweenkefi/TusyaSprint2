@@ -4,10 +4,12 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.screens.ScreenGame;
+import com.mygdx.game.screens.ScreenRestart;
 
 public class MyGdxGame extends Game {
-	ScreenGame screenGame;
+	public  ScreenGame screenGame;
 	public SpriteBatch batch;
+	public ScreenRestart screenRestart;
 	public static final int SRC_WIDTH = 1280;
 	public static final int SRC_HEIGHT = 720;
 	public OrthographicCamera camera;
@@ -19,6 +21,7 @@ public class MyGdxGame extends Game {
 		batch = new SpriteBatch();
 
 		screenGame = new ScreenGame(this);
+		screenRestart = new ScreenRestart(this);
 		setScreen(screenGame);
 
 	}

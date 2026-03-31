@@ -11,10 +11,10 @@ public class MovingBackground {
 
 
 
-    public MovingBackground() {
+    public MovingBackground(String background) {
         texture1x = 0;
         texture2x = MyGdxGame.SRC_WIDTH;
-        texture = new Texture("background/game_bg.png");
+        texture = new Texture(background);
 
     }
     public void draw(Batch batch) {

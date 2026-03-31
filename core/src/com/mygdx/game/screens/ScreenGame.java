@@ -14,7 +14,7 @@ import static com.mygdx.game.MyGdxGame.SRC_HEIGHT;
 import static com.mygdx.game.MyGdxGame.SRC_WIDTH;
 
 public class ScreenGame implements Screen {
-    int gamePoints;
+    public int gamePoints;
     private MyGdxGame myGdxGame;
 
     Bird bird;
@@ -36,7 +36,7 @@ public class ScreenGame implements Screen {
 
         this.myGdxGame = myGdxGame;
         bird = new Bird(0, 0, new Texture("birdTiles/bird0.png"), 5);
-        background = new MovingBackground();
+        background = new MovingBackground("background/game_bg.png");
         initTubes();
         pointCounter = new PointCounter(SRC_WIDTH - pointCounterMarginRight, SRC_HEIGHT - pointCounterMarginTop);
     }
@@ -61,6 +61,10 @@ public class ScreenGame implements Screen {
         if (!bird.isInField()) {
             System.out.println("not in field");
             isGameOver = true;
+        }
+        if (isGameOver) {
+            myGdxGame.screenRestart.gamePoints = gamePoints;
+            myGdxGame.setScreen(myGdxGame.screenRestart);
         }
 
 
