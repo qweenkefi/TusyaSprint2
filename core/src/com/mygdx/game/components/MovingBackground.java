@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.mygdx.game.MyGdxGame;
 
 public class MovingBackground {
+    public void setTexture(Texture texture) {
+        dispose();
+        this.texture = texture;
+    }
+
     Texture texture;
     int texture1x, texture2x;
     int speed = 5;

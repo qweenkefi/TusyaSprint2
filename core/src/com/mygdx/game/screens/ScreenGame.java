@@ -31,7 +31,8 @@ public class ScreenGame implements Screen {
     Tube[] tubes;
     boolean isGameOver;
     boolean isGameStarted;
-    boolean isPlayerLeft;
+    boolean backgroundChanged;
+
 
 
     public ScreenGame(MyGdxGame myGdxGame) {
@@ -68,6 +69,10 @@ public class ScreenGame implements Screen {
             System.out.println("not in field");
             isGameOver = true;
         }
+        if (gamePoints >= 1 && !backgroundChanged){
+            background.setTexture(new Texture("background/restart_bg.png"));
+        }
+
         if (isGameOver) {
             myGdxGame.screenRestart.gamePoints = gamePoints;
             myGdxGame.setScreen(myGdxGame.screenRestart);
@@ -86,7 +91,7 @@ public class ScreenGame implements Screen {
             }
         }
 
-
+// this texture dispose texture
 
 
         ScreenUtils.clear(1, 0, 0, 1);
