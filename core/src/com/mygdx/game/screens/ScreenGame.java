@@ -30,6 +30,8 @@ public class ScreenGame implements Screen {
     int tubeCount = 3;
     Tube[] tubes;
     boolean isGameOver;
+    boolean isGameStarted;
+    boolean isPlayerLeft;
 
 
     public ScreenGame(MyGdxGame myGdxGame) {
@@ -45,12 +47,16 @@ public class ScreenGame implements Screen {
     public void show() {
         gamePoints = 0;
         isGameOver = false;
+        bird.setY(SRC_HEIGHT / 2);
+        initTubes();
+        isGameStarted = false;
 
     }
 
 
     @Override
     public void render(float v) {
+        //if isGameStarted
 
 
         if (Gdx.input.justTouched()) {

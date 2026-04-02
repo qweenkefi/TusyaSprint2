@@ -38,6 +38,9 @@ public class TextButton {
         textY = y + (buttonHeight + textHeight) / 2;
 
     }
+
+
+
     public boolean isHit(int tx,int ty){
         return tx >= x && tx <= x + buttonWidth && ty >= y && ty <= y + buttonHeight;
     }
