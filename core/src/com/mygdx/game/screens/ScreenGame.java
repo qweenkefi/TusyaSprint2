@@ -69,7 +69,7 @@ public class ScreenGame implements Screen {
             System.out.println("not in field");
             isGameOver = true;
         }
-        if (gamePoints >= 1 && !backgroundChanged){
+        if (gamePoints >= 5 && !backgroundChanged){
             background.setTexture(new Texture("background/restart_bg.png"));
         }
 
