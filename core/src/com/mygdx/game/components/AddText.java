@@ -17,6 +17,6 @@ public class AddText {
         }
 
         public void draw(Batch batch) {
-            font.draw(batch, "Get 5 points \nto change\nthe background ", x, y);
+             font.draw(batch, "Get 5 points \nto change\nthe background ", x, y);
         }
 }

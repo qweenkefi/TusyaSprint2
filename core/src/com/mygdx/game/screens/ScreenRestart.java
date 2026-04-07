@@ -21,6 +21,8 @@ public class ScreenRestart implements Screen {
     Texture texture;
     private MyGdxGame myGdxGame;
     int gamePoints;
+    boolean showText;
+
 
 
     public ScreenRestart(MyGdxGame myGdxGame) {
@@ -30,6 +32,7 @@ public class ScreenRestart implements Screen {
         addText = new AddText(750, 350);
         buttonRestart = new TextButton(100,400, "Restart");
         buttonMenu = new TextButton(100, 200, "Menu");
+        showText = true;
 
         background = new MovingBackground("background/restart_bg.png");
     }
@@ -68,7 +71,9 @@ public class ScreenRestart implements Screen {
         buttonRestart.draw(myGdxGame.batch);
         buttonMenu.draw(myGdxGame.batch);
         pointCounter.draw(myGdxGame.batch, gamePoints);
-        addText.draw(myGdxGame.batch);
+        if(gamePoints<5 && showText){
+            addText.draw(myGdxGame.batch);
+        }
         myGdxGame.batch.end();
 
     }
@@ -91,7 +96,8 @@ public class ScreenRestart implements Screen {
     @Override
     public void hide() {
 
-    }
+        if(gamePoints>5){showText = false ;
+    }}
 
     @Override
     public void dispose() {
