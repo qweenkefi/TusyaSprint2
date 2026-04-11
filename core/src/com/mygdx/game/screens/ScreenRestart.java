@@ -68,7 +68,7 @@ public class ScreenRestart implements Screen {
         buttonRestart.draw(myGdxGame.batch);
         buttonMenu.draw(myGdxGame.batch);
         pointCounter.draw(myGdxGame.batch, gamePoints);
-        if(gamePoints<5) { addText.draw(myGdxGame.batch);}
+        if (gamePoints<5){addText.draw(myGdxGame.batch);}
         myGdxGame.batch.end();
 
     }
